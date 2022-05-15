@@ -21,9 +21,10 @@ l’architecture dans un fichier README.md :
   
   # Dockerfiles
   
-Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application. On part sur un OS distribution alpine, légère et rapide. On ajoute le repertoire d'application et on installe les dependences. On fini par exectuer les commande yarn run start
-  
-```Dockerfile
+Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application. On part sur un OS distribution alpine, légère et rapide. On ajoute le repertoire d'application et on installe les dependences. On fini par exectuer les commande yarn run start. On est sur le même principe pour les 2 dockerfiles.
+
+h3 Dockerfile front
+```
 FROM node:13.12.0-alpine
 RUN apk update && apk upgrade
 
@@ -32,9 +33,22 @@ ENV PATH /app/node_modules/.bin:$PATH
 
 COPY package.json .
 RUN yarn install
-COPY . .
 
+COPY . .
 CMD [ "yarn", "run", "start" ]
 ```
+h3 Dockerfile back
+```Dockerfile
+FROM node:13.12.0-alpine
+RUN apk update && apk upgrade
 
+WORKDIR /app
 
+ENV PATH /app/node_modules/.bin:$PATH
+
+COPY package.json .
+RUN yarn install
+
+COPY . .
+CMD [ "node", "server.js" ]
+```
