@@ -21,26 +21,20 @@ l’architecture dans un fichier README.md :
   
   # Dockerfiles
   
-  Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application.
+Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application. On part sur un OS distribution alpine, légère et rapide. On ajoute le repertoire d'application et on installe les dependences. On fini par exectuer les commande yarn run start
   
 ```Dockerfile
-
-# Téléchargement de l'image alpine, on l'update et on l'a met à jour
 FROM node:13.12.0-alpine
 RUN apk update && apk upgrade
 
-# On ajoute le repertoire d'application 
 WORKDIR /app
-
-# On ajoute ici les variables d'environnement et le chemin 
 ENV PATH /app/node_modules/.bin:$PATH
 
-# Ici on installe les dependantces
 COPY package.json .
 RUN yarn install
-
-# Copie fichiers du projet
 COPY . .
-CMD [ "node", "server.js" ] 
 
+CMD [ "yarn", "run", "start" ]
 ```
+
+
