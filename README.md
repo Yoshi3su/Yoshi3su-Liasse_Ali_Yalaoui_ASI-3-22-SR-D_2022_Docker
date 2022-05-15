@@ -23,7 +23,7 @@ l’architecture dans un fichier README.md :
   
   Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application.
   
-'''Dockerfile
+```Dockerfile
 
 # Téléchargement de l'image alpine, on l'update et on l'a met à jour
 FROM node:13.12.0-alpine
@@ -43,4 +43,4 @@ RUN yarn install
 COPY . .
 CMD [ "node", "server.js" ] 
 
-'''
+```
