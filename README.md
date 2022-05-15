@@ -23,8 +23,8 @@ l’architecture dans un fichier README.md :
   
 Pour conteneuriser nos applications front et backend, nous utiliser des dockerfile, fichiers dont l'objectif est de décrire les étapes de conteneurisations de l'application. On part sur un OS distribution alpine, légère et rapide. On ajoute le repertoire d'application et on installe les dependences. On fini par exectuer les commande yarn run start. On est sur le même principe pour les 2 dockerfiles.
 
-#h3 Dockerfile front
-```
+
+```Dockerfile front
 FROM node:13.12.0-alpine
 RUN apk update && apk upgrade
 
@@ -37,8 +37,8 @@ RUN yarn install
 COPY . .
 CMD [ "yarn", "run", "start" ]
 ```
-#h3 Dockerfile back
-```
+
+```Dockerfile back
 FROM node:13.12.0-alpine
 RUN apk update && apk upgrade
 
