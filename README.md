@@ -38,7 +38,7 @@ COPY . .
 CMD [ "yarn", "run", "start" ]
 ```
 h3 Dockerfile back
-```Dockerfile
+```
 FROM node:13.12.0-alpine
 RUN apk update && apk upgrade
 
