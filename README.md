@@ -105,7 +105,11 @@ On installe ici 3 services :
   2. L'api NodeJS, qui nous servira de point de communication 
   3. La bdd MondoDB, où nous créerons notre volume et permettra de conserver les données.
  
- 
+ #Architecture du réseau
+ Pour bien comprendre l'architecture du réseau ! Un schéma s'impose !
+
+ ![image](https://user-images.githubusercontent.com/105603383/168490474-bc459d51-a6de-4f13-914b-622401b0c3b0.png)
+
  # How to start it 
 Pour start l'application, on se place dans le repertoire du projet à l'emplacement du docker compose et on utilise la commmande
 
