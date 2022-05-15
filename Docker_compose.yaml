@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+
+  # React
+  frontend:
+    ports:
+        - 3000:3000 # Le port par défaut de reactjs est 3000 pour le frontend.
+    build: ./frontend
+    container_name: react-app
+
+  # Data base mongo
+  mongodb:
+    image: mongo:latest
+    container_name: mongo
+    volumes: 
+      - 'mongo-data:/data/db'
+    networks:
+      - backend
+
+  # NodeJS pour interagir avec MongoDB
+  backend:
+    build: ./backend
+    container_name: nodejs
+    ports:
+     - 8080:8080 # Le port par défaut de l’api est indiqué dans le code source du fichier server.js (line 69)
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/dbdev
+    depends_on:
+      - mongodb
+    networks:
+      - backend
+
+# Volume pour garder les données
+  volumes:
+    mongo-data:
+
+  networks:
+    backend:
+        driver: bridge
